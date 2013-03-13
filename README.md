@@ -1,0 +1,5 @@
+liboffloadcublas is a library implementing <a href=http://www.netlib.org/blas/>BLAS</a> with offloading CPU data to the <a href=https://developer.nvidia.com/cublas>CUBLAS</a> GPGPU API. When the CPU data are small, liboffloadcublas deals them using CPU BLAS. On the other hand, it passes them to NVIDIA GPU when large (at the current implementation, each of rows and cols of matrices is not less than 2048.)
+
+liboffloadcublas uses <a href=http://software.intel.com/en-us/intel-mkl>Intel Math Kernel Library</a> as CPU BLAS at default. On using other BLAS'es, the <code>OFFLOADCUBLAS_SO</code> environment variable. When your BLAS consists of several library files, you can write these library names with separating with colon.
+
+Our implementation has not been completed yet. There are interfaces of Level 1 and 2, and implementations of <code>GEMM</code>, <code>SYMM</code>, <code>HEMM</code> and <code>SYRK</code>. <code>HERK</code>, <code>SYR2K</code>, <code>HER2K</code>, <code>TRMM</code> and <code>TRSM</code> are being implemented now, and will be released soon.
