@@ -356,10 +356,19 @@ REAL(VOID8, spr2_)
 #define EQUAL(A,B) ((A).x == (float) (B) && (A).y == 0.0f)
 #define MUL(A,B) (cuCmulf((A), (B)))
 #define LITERAL(A) (make_cuFloatComplex((float) (A), 0.0f))
+#define REALT float
+#define CREAL(A) (cuCrealf(A))
+#define REALEQUAL(A,B) ((A) == (float) (B))
+#define REALMUL(A,B) (make_cuFloatComplex((float) (A) * cuCrealf(B), (float) (A) * cuCimagf(B)))
 #include "gemm.c"
 #include "symm.c"
 #include "hemm.c"
 #include "syrk.c"
+#include "herk.c"
+#undef REALMUL
+#undef REALEQUAL
+#undef CREAL
+#undef REALT
 #undef TRANSC
 #undef LITERAL
 #undef MUL
@@ -375,10 +384,19 @@ REAL(VOID8, spr2_)
 #define EQUAL(A,B) ((A).x == (double) (B) && (A).y == 0.0)
 #define MUL(A,B) (cuCmul((A), (B)))
 #define LITERAL(A) (make_cuDoubleComplex((double) (A), 0.0))
+#define REALT double
+#define CREAL(A) (cuCreal(A))
+#define REALEQUAL(A,B) ((A) == (double) (B))
+#define REALMUL(A,B) (make_cuDoubleComplex((double) (A) * cuCreal(B), (double) (A) * cuCimag(B)))
 #include "gemm.c"
 #include "symm.c"
 #include "hemm.c"
 #include "syrk.c"
+#include "herk.c"
+#undef REALMUL
+#undef REALEQUAL
+#undef CREAL
+#undef REALT
 #undef TRANSC
 #undef LITERAL
 #undef MUL
